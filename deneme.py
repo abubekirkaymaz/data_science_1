@@ -11,5 +11,7 @@ word = input("bir kelime gir: ")
 print(search(text, word))
 
 
+
+
   
 
