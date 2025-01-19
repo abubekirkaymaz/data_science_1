@@ -37,3 +37,5 @@ lst_2 = [10.50 , 30, 50] #dize de bir adet float veri varsa np dizenin tümünü
 lst_arr_2 = np.array(lst_2)
 print(lst_arr_2)
 print(lst_arr_2.dtype) #float64
+
+#Numpy supports several data types such as int (integer), float (numeric floating point), and bool (boolean values, True and False). 
