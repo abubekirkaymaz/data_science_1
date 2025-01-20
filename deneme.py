@@ -291,3 +291,5 @@ height_age_arr = np.concatenate((heights_arr, ages_arr), axis=1)
 
 print(height_age_arr.shape) #(45, 2)
 print(height_age_arr[:3,:])
+
+#son değişiklik
