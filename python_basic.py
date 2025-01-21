@@ -15,3 +15,4 @@ Her bir elemanina indeksler (index) kullanilarak erişilebilir.
 Bazi operasyonlari (örneğin dilimleme, yineleme gibi) desteklerler.
 """
 
+
