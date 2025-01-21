@@ -272,6 +272,7 @@ combined = np.hstack((heights, ages, weights))
 print(combined)
 """
 
+"""
 #Concatenate
 #More generally, we can use the function numpy.concatenate. If we want to concatenate, link together, two arrays along rows, then pass 'axis = 1' to achieve the same result as using numpy.hstack; and pass 'axis = 0' if you want to combine arrays vertically.
 
@@ -292,4 +293,25 @@ height_age_arr = np.concatenate((heights_arr, ages_arr), axis=1)
 print(height_age_arr.shape) #(45, 2)
 print(height_age_arr[:3,:])
 
-#son değişiklik
+"""
+
+#Mathematical Operations on Arrays
+
+import numpy as np
+
+heights_arr = np.array([189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191])
+ages_arr = np.array([57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 62, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47, 70]).reshape((-1,1))
+
+heights_arr = heights_arr.reshape((45,1))
+height_age_arr = np.hstack((heights_arr, ages_arr))
+
+print(height_age_arr[:,0]*0.0328084)
+
+#Now we have all heights in feet. Note that this operation won’t change the original array, it returns a new 1darray where 0.0328084 has been multiplied to each element in the first column of 'heights_age_arr'.
+
+#Numpy Array Method
+print(height_age_arr.sum()) 
+print(height_age_arr.sum(axis=0))  #[8100 2475] >> sütunlar toplamları
+print(height_age_arr.sum(axis=1)) #satırlar toplamları
+
+#Other operations, such as .min(), .max(), .mean(), work in a similar way to .sum().
