@@ -15,4 +15,9 @@ Her bir elemanina indeksler (index) kullanilarak erişilebilir.
 Bazi operasyonlari (örneğin dilimleme, yineleme gibi) desteklerler.
 """
 
+years = [2002, 2008, 1999]
+years[1] = 2007
+for year in years:
+  print(year)
+
 
