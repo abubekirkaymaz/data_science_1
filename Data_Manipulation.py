@@ -185,8 +185,9 @@ heights_and_ages_arr = heights_and_ages_arr.reshape((2,45))
 heights_and_ages_arr[:2, :5] = 0 #ilk iki satirin ilk beş verisi 0 ile değiştirildi
 print(heights_and_ages_arr)
 """
-"""
+
 #Assigning an Array to an Array
+"""
 #In addition, a 1darray or a 2darry can be assigned to a subset of another 2darray, as long as their shapes match.
 
 import numpy as np
@@ -294,9 +295,11 @@ print(height_age_arr.shape) #(45, 2)
 print(height_age_arr[:3,:])
 
 """
-"""
-#Mathematical Operations on Arrays
 
+
+
+#Mathematical Operations on Arrays
+"""
 import numpy as np
 
 heights_arr = np.array([189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191])
