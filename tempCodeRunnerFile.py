@@ -1,2 +1,8 @@
-heights_ages_arr = np.vstack(heights_arr_15, ages_arr_15)
-print(heights_ages_arr)
+def mult(n):
+  return lambda a : a * n
+
+doubler = mult(2)
+tripler = mult(3)
+
+print(doubler(5))
+print(tripler(5))
