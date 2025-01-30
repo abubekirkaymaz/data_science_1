@@ -1,1 +1,5 @@
-import numpy as np
+print("---------------------------")
+# print(heights_arr)
+# print("---------------------------")
+# print(ages_arr)
+# print("---------------------------")
