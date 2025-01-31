@@ -205,6 +205,8 @@ print(heights_ages_arr__)
 #2D Numpy Array'de Slicing
 #Assigning Single Values
 #Assigning an Array to an Array
+
+#-----------------------------------------------------------------------------------------------------------------------------------#
 #Mathematical Operations on Arrays
 
 # heights_arr = np.array([189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191])
@@ -232,23 +234,23 @@ print(heights_ages_arr__)
 
 # print(heights_ages_arr[:, 0] * 0.0328084)
 
-lst_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-lst_2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+# lst_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+# lst_2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
 
-lst_1_arr = np.array(lst_1)
-lst_2_arr = np.array(lst_2)
+# lst_1_arr = np.array(lst_1)
+# lst_2_arr = np.array(lst_2)
 
 # print(lst_1_arr.shape)
 # print(lst_2_arr.shape)
 
-lst_2_arr = lst_2_arr.reshape(3, 4)
+# lst_2_arr = lst_2_arr.reshape(3, 4)
 #print(lst_2_arr)
 
-lst_1_arr = lst_1_arr.reshape(3, 4)
+# lst_1_arr = lst_1_arr.reshape(3, 4)
 #print(lst_1_arr)
 
 #lst_arr = np.vstack((lst_1_arr, lst_2_arr))
-lst_arr = np.concatenate((lst_1_arr, lst_2_arr), axis=0)
+# lst_arr = np.concatenate((lst_1_arr, lst_2_arr), axis=0)
 #print(lst_arr.shape) # (6,4)
 
 # print(lst_arr[0:2, 0:2].sum()) #dizi diliminin tüm elemanlarının toplamını verir ==> 14 (1+2+5+6)
@@ -268,16 +270,44 @@ lst_arr = np.concatenate((lst_1_arr, lst_2_arr), axis=0)
 # print(lst_arr[0:2, : ].max()) #dizide ki bir dilim üzerinde işlem yapabilir
 # print(lst_arr[0:2, : ].mean()) #dizide ki bir dilim üzerinde işlem yapabilir
 
-print(lst_arr)
+# print(lst_arr)
 # print(".............................")
 # print(lst_arr[4].min()) #dizinin 5. satırının min değerini verir
 # print(lst_arr[1, 2].max()) #mantıksız. çünkü zaten tek bir elemanı seçip onun max değerini alıyorum.
 
 #print(lst_arr[0,:] + 1) #matematiksel işlem sonucunda esas dizeden farklı bir dize döner [  1   2   3   4] ==> [2 3 4 5] 
-print((lst_arr[0:2, 1:4] * 2).shape)
+# print((lst_arr[0:2, 1:4] * 2).shape)
 
-
+#-----------------------------------------------------------------------------------------------------------------------------------#
 #Comparisons
+"""
+lst_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+lst_2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+
+lst_1_arr = np.array(lst_1)
+lst_2_arr = np.array(lst_2)
+lst_arr = np.hstack((lst_1_arr, lst_2_arr))
+
+lst_arr_46 = lst_arr.reshape(4,-1)
+print(lst_arr_46)
+
+print(lst_arr_46[0:2, 3:6] > 5) #seçilen dilimi kontrol eder ve dilim ve seçilen boyut formatında true, false verilerini gösterir.
+print((lst_arr_46[0:2, 3:6] > 5).sum()) # true = 1, false=0 olarak alır ve toplamlarını verir. Toplam dört adet true mevcut.
+"""
+#-----------------------------------------------------------------------------------------------------------------------------------#
 #Mask & Subsetting
+lst_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+lst_2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+
+lst = lst_1 + lst_2
+lst_arr = np.array(lst)
+lst_arr_38 = lst_arr.reshape(-1, 8)
+print(lst_arr_38)
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------#
 #Multiple Criteria
+#-----------------------------------------------------------------------------------------------------------------------------------#
 #Concatenate & Combine
+#-----------------------------------------------------------------------------------------------------------------------------------#
