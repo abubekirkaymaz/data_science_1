@@ -296,13 +296,69 @@ print((lst_arr_46[0:2, 3:6] > 5).sum()) # true = 1, false=0 olarak alır ve topl
 """
 #-----------------------------------------------------------------------------------------------------------------------------------#
 #Mask & Subsetting
-lst_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-lst_2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
 
-lst = lst_1 + lst_2
-lst_arr = np.array(lst)
-lst_arr_38 = lst_arr.reshape(-1, 8)
-print(lst_arr_38)
+
+heights = [189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191]
+
+ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 62, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47, 70]
+
+heights_ages = heights + ages
+heights_ages_arr = np.array(heights_ages)
+
+# print(heights_ages_arr.shape)
+
+# print(heights_ages_arr)
+
+new_arr = heights_ages_arr.reshape(2, -1).T
+
+# print(new_arr)
+
+mask = new_arr[:, 0] >= 180 # ilk sütunda 180 den büyük ve eşit olan değerler için bir mask değişkeni tanımladık
+
+# print(mask.shape)
+
+# print(new_arr[mask,]) #esas dizimizde bu mask değişkeninin tuttuğu değerleri tüm satırlara uyguladığımızda koşulu sağlayan değerler listelenir.
+
+arr = np.array([
+    [10,  20,  30,  40,  50],   # 0. satır
+    [60,  70,  80,  90, 100]    # 1. satır
+])
+
+mask = arr[1, :] > 80
+# print(mask) #[False False False  True  True]
+
+filtered_arr = arr[:, mask]
+# print(filtered_arr)
+
+lst_1 = []
+for i in range(20, 40, 2):
+  lst_1.append(i)
+
+# print(lst_1)
+
+lst_2 =[]
+for i in range(6, 34, 3):
+  lst_2.append(i)
+
+# print(lst_2)
+
+lst_3 = []
+for i in range(20, 30):
+  lst_3.append(i)
+
+# print(lst_3)
+
+lst1 = np.array(lst_1).reshape(-1,1)
+lst2 = np.array(lst_2).reshape(-1,1)
+lst3 = np.array(lst_3).reshape(-1,1)
+
+lst = np.hstack((lst1, lst2, lst3))
+
+print(lst)
+
+mask = lst[:, 1] % 2 == 0
+
+print(lst[mask])
 
 
 
