@@ -1,5 +1,81 @@
 import numpy as np
 
+# 50 kişilik rastgele veri seti oluşturuyoruz
+np.random.seed(42)  # Aynı rastgele verileri tekrar almak için
+
+# Yaş: 18 ile 70 arasında rastgele
+age = np.random.randint(18, 71, 50)
+
+# Boy: 150 cm ile 190 cm arasında rastgele
+height = np.random.randint(150, 191, 50)
+
+# Kilo: 40 kg ile 100 kg arasında rastgele
+weight = np.random.randint(40, 101, 50)
+
+# Gelir: 1000 USD ile 5000 USD arasında rastgele
+income = np.random.randint(1000, 5001, 50)
+
+# Eğitim durumu: 1 ile 4 arasında rastgele
+education = np.random.randint(1, 5, 50)
+
+# Verileri yazdır
+# print("Yaş:", age)
+# print("Boy (cm):", height)
+# print("Kilo (kg):", weight)
+# print("Gelir (USD):", income)
+# print("Eğitim Durumu:", education)
+
+data_lists = [age, height, weight, income, education]
+
+data_arrays = [np.array(data) for data in data_lists]
+
+for idx in range(len(data_arrays)):
+    data_arrays[idx] = data_arrays[idx].reshape(50, 1)
+
+all_arr = np.hstack(data_arrays)
+#np.hstack() fonksiyonu aslında tuple alır. Ancak, listeyi bir tuple'a dönüştürmeden de çalışabilir çünkü np.hstack() fonksiyonu listeyi otomatik olarak bir tuple gibi kabul eder.
+
+
+print(all_arr.size) #250 >> dizideki toplam veri sayısı
+print(all_arr.shape) #(50, 5) 1d bir dizi
+print(all_arr.dtype) #int32 >> integer tipinde veri
+print(all_arr.ndim) #2 boyutlu dizi
+print(all_arr)
+
+#------------------------------------------------------------------#
+# 1-Indexing-Slicing
+#------------------------------------------------------------------#
+
+# #3. sütunda ki ilk 10 veriyi 2 şer atlayarak almak
+# print(all_arr[0:10:2, 2])
+
+# #dizideki ilk dört satırın sütunlarını 2'şer atlayarak almak
+# print(all_arr[0:4, 0:5:2])
+
+# # İlk 20 satırın, 4. sütun hariç tüm verilerini alıyoruz
+# result = np.delete(all_arr[0:20, :], 3, axis=1)  # 3. index olan 4. sütunu atıyoruz.axis=1 parametresi sütunları (yani yatay) silmeyi belirtir.
+# print(result)
+
+# # İlk 20 satırın, 4. ve 2. sütun hariç tüm verilerini alıyoruz
+# result = np.delete(all_arr[0:20, :], [1, 3], axis=1)  # 2. ve 4. sütunları atıyoruz
+# print(result)
+
+
+# # İlk 20 satırdaki, 1. indeksten 3. indekse kadar olan sütunları siliyoruz
+# result = np.delete(all_arr[0:20, :], range(1, 4), axis=1)  # 1, 2, 3. sütunları siliyoruz
+# print(result)
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------
 #1-The first step in data science is to transform it into arrays of numbers.
 #2-Note that once an array is created in numpy, its size cannot be changed.
 #3-Size tells us how big the array is, shape tells us the dimension.
@@ -10,22 +86,6 @@ import numpy as np
 #8-iki dizeyi yataş birleştirmek istersek, satır sayıları aynı olmalı, (axis=1)
 #9-iki dizeyi dikey birleştirmek istersek, sütun sayıları aynı olmalı, (axis=0)
 
-
-heights = [189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191]
-
-ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 62, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47, 70]
-
-#------------------------------------------------------------------#
-# 1-Creat Array
-#------------------------------------------------------------------#
-
-# heights_arr = np.array(heights)
-# ages_arr = np.array(ages)
-
-# print(heights_arr.size) #45 >> dizideki toplam veri sayısı
-# print(heights_arr.shape) #(45,) 1d bir dizi
-# print(ages_arr.dtype) #int64 >> integer tipinde veri
-# print(heights_arr.ndim) #1 boyutlu dizi
 
 #------------------------------------------------------------------#
 # 2-Indexing-Slicing
@@ -348,12 +408,12 @@ arr[0, :] = (m,) olan bir vektör satir olarak yayilir.
 #------------------------------------------------------------------#
 #Mask & Subsetting
 #------------------------------------------------------------------#
-heights_arr = np.array(heights)
-ages_arr = np.array(ages)
+# heights_arr = np.array(heights)
+# ages_arr = np.array(ages)
 
-heights_arr = heights_arr.reshape((45,1))
-ages_arr = ages_arr.reshape((45,1))
-height_age_arr = np.hstack((heights_arr, ages_arr))
+# heights_arr = heights_arr.reshape((45,1))
+# ages_arr = ages_arr.reshape((45,1))
+# height_age_arr = np.hstack((heights_arr, ages_arr))
 
 # mask = height_age_arr[:, 0] >= 182
 
@@ -366,25 +426,25 @@ height_age_arr = np.hstack((heights_arr, ages_arr))
 
 #Extra:new_arr = heights_ages_arr.reshape(2, -1).T
 
-mask = height_age_arr[:, 0] >= 180 # ilk sütunda 180 den büyük ve eşit olan değerler için bir mask değişkeni tanimladik
+# mask = height_age_arr[:, 0] >= 180 # ilk sütunda 180 den büyük ve eşit olan değerler için bir mask değişkeni tanimladik
 
-print(mask.shape)
+# print(mask.shape)
 
-print(height_age_arr[mask,]) #esas dizimizde bu mask değişkeninin tuttuğu değerleri tüm satirlara uyguladiğimizda koşulu sağlayan değerler listelenir.
+# print(height_age_arr[mask,]) #esas dizimizde bu mask değişkeninin tuttuğu değerleri tüm satirlara uyguladiğimizda koşulu sağlayan değerler listelenir.
 
-arr = np.array([
-    [10,  20,  30,  40,  50],   # 0. satir
-    [60,  70,  80,  90, 100]    # 1. satir
-])
+# arr = np.array([
+#     [10,  20,  30,  40,  50],   # 0. satir
+#     [60,  70,  80,  90, 100]    # 1. satir
+# ])
 
-mask = arr[1, :] > 80
-# print(mask) #[False False False  True  True]
+# mask = arr[1, :] > 80
+# # print(mask) #[False False False  True  True]
 
-filtered_arr = arr[:, mask]
-# print(filtered_arr)
+# filtered_arr = arr[:, mask]
+# # print(filtered_arr)
 
-mask = (height_age_arr[:, 0]>=182) & (height_age_arr[:,1]<=50)
-print(height_age_arr[mask,])
+# mask = (height_age_arr[:, 0]>=182) & (height_age_arr[:,1]<=50)
+# print(height_age_arr[mask,])
 
 #MASK EXERCiSES
 """
