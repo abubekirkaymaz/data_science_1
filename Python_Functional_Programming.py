@@ -145,3 +145,120 @@ The function is impure if it depends on any external state that it modifies or t
 # names = ["John", "Emma", "Jake", "Rachel", "James"]
 # filtered = list(filter(lambda name: name[0] == 'J', names))
 # print(filtered)
+
+
+#*************************************************************************************
+#***args and kwargs***
+#*************************************************************************************
+
+#*args receives arguments as a tuple, which can be used inside the function.
+#You need to use the unpacking operator * before args. This operator informs Python that the argument is an iterable and should be unpacked to receive its values as individual arguments.
+#Note that args is just a name. You’re not required to use the name args. You can choose any name that you prefer.
+#When defining a function with both regular arguments and *args, the regular arguments must come before *args in the function definition.
+#Extra:The first line of the function definition, which includes the function name and its parameters, is called function signature.
+#Python also allows you to pass keyword arguments using **kwargs. In this case, **kwargs receives arguments in the form of a dictionary, consisting of key:value pairs.
+#The ** operator in Python is used to unpack dictionaries into arguments. It enables a function to accept an arbitrary number of keyword arguments, converting these arguments into a dictionary of key:value pairs.
+#In a function definition, the order of arguments is important. First, regular arguments are listed, followed by *args for positional arguments, and finally **kwargs for keyword arguments.
+
+
+
+# #**kwargs is a dictionary
+# def display_info(**kwargs):
+# #kwargs.items() returns the key:valie pairs
+#   for key, value in kwargs.items():
+#     print(key, ":", value)
+
+# display_info(name="Alice", age=30, city="New York")
+
+
+#*************************************************************************************
+#***Decorators***
+#*************************************************************************************
+
+#In Python, functions can be nested. This means you can define a function inside another function's body.
+#outer function
+def outer_function():
+  print("Hello from the outer function")
+  #inner function
+  def inner_function():
+    print("Hello from the inner function")
+  inner_function()
+
+outer_function()
+
+
+#You can also return the result of the nested function directly from within the body of the parent function.
+def greet(name):
+  print("Hey", name)
+
+  def account():
+    return "Your account is created!"
+
+  message = account()
+  return message
+
+print(greet("Bob"))
+
+
+
+def order():
+  def prepare():
+    return "Your meal is being prepared!"
+  status = prepare()
+  return status
+
+print(order())
+
+
+#Bir mesaj üreten bir fonksiyonunuz olduğunu düşünün. Amacınız, bu orijinal fonksiyonu bir argüman olarak alan ve orijinal fonksiyonun kodunu değiştirmeden orijinal mesajı büyük harfe dönüştüren başka bir fonksiyon oluşturmaktır. Bu fonksiyonlar dekoratör olarak bilinir. Aşağıdaki kodda, uppercase() fonksiyonu bir dekoratör olarak hareket eder ve wrapper() fonksiyonu greet() fonksiyonunun değiştirilmiş (veya dekore edilmiş) versiyonunu temsil eder.
+def greet():
+    return "Welcome!"
+
+#takes a function as an argument
+def uppercase(func):
+  #wrapper function to keep the
+  #original function code unchanged
+  def wrapper():
+    orig_message = func()
+    modified_message = orig_message.upper()
+    return modified_message
+  return wrapper
+
+greet_upper = uppercase(greet)
+print(greet_upper())
+
+
+#You can apply a decorator to a function using the @ sign. It improves the code readability and provides a clean separation between the function and its decoration. When a function with a decorator is called, it automatically includes the behavior defined in the decorator.
+def uppercase(func):
+  def wrapper():
+    orig_message = func()
+    modified_message = orig_message.upper()
+    return modified_message
+  return wrapper
+
+@uppercase
+def greet():
+    return "Welcome!"
+
+# Using the decorated function
+print(greet())
+
+
+#Decorators are a powerful feature, offering a concise, readable, and efficient way to enhance the functionality of existing functions.You can apply the same decorator to several different functions:
+def stock_status_decorator(func):
+  def wrapper(item):
+    result = func(item)
+    print(result, ": stock status for", item)
+    return result
+  return wrapper
+
+@stock_status_decorator #restock_item = stock_status_decorator(restock_item)
+def restock_item(item):
+    return "Restocked"
+
+@stock_status_decorator #sell_item = stock_status_decorator(sell_item)
+def sell_item(item):
+    return "Sold"
+
+print(restock_item("Laptop"))
+print(sell_item("Smartphone"))
