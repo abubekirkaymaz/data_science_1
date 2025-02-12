@@ -175,90 +175,90 @@ The function is impure if it depends on any external state that it modifies or t
 #***Decorators***
 #*************************************************************************************
 
-#In Python, functions can be nested. This means you can define a function inside another function's body.
-#outer function
-def outer_function():
-  print("Hello from the outer function")
-  #inner function
-  def inner_function():
-    print("Hello from the inner function")
-  inner_function()
+# #In Python, functions can be nested. This means you can define a function inside another function's body.
+# #outer function
+# def outer_function():
+#   print("Hello from the outer function")
+#   #inner function
+#   def inner_function():
+#     print("Hello from the inner function")
+#   inner_function()
 
-outer_function()
-
-
-#You can also return the result of the nested function directly from within the body of the parent function.
-def greet(name):
-  print("Hey", name)
-
-  def account():
-    return "Your account is created!"
-
-  message = account()
-  return message
-
-print(greet("Bob"))
+# outer_function()
 
 
+# #You can also return the result of the nested function directly from within the body of the parent function.
+# def greet(name):
+#   print("Hey", name)
 
-def order():
-  def prepare():
-    return "Your meal is being prepared!"
-  status = prepare()
-  return status
+#   def account():
+#     return "Your account is created!"
 
-print(order())
+#   message = account()
+#   return message
 
-
-#Bir mesaj üreten bir fonksiyonunuz olduğunu düşünün. Amacınız, bu orijinal fonksiyonu bir argüman olarak alan ve orijinal fonksiyonun kodunu değiştirmeden orijinal mesajı büyük harfe dönüştüren başka bir fonksiyon oluşturmaktır. Bu fonksiyonlar dekoratör olarak bilinir. Aşağıdaki kodda, uppercase() fonksiyonu bir dekoratör olarak hareket eder ve wrapper() fonksiyonu greet() fonksiyonunun değiştirilmiş (veya dekore edilmiş) versiyonunu temsil eder.
-def greet():
-    return "Welcome!"
-
-#takes a function as an argument
-def uppercase(func):
-  #wrapper function to keep the
-  #original function code unchanged
-  def wrapper():
-    orig_message = func()
-    modified_message = orig_message.upper()
-    return modified_message
-  return wrapper
-
-greet_upper = uppercase(greet)
-print(greet_upper())
+# print(greet("Bob"))
 
 
-#You can apply a decorator to a function using the @ sign. It improves the code readability and provides a clean separation between the function and its decoration. When a function with a decorator is called, it automatically includes the behavior defined in the decorator.
-def uppercase(func):
-  def wrapper():
-    orig_message = func()
-    modified_message = orig_message.upper()
-    return modified_message
-  return wrapper
 
-@uppercase
-def greet():
-    return "Welcome!"
+# def order():
+#   def prepare():
+#     return "Your meal is being prepared!"
+#   status = prepare()
+#   return status
 
-# Using the decorated function
-print(greet())
+# print(order())
 
 
-#Decorators are a powerful feature, offering a concise, readable, and efficient way to enhance the functionality of existing functions.You can apply the same decorator to several different functions:
-def stock_status_decorator(func):
-  def wrapper(item):
-    result = func(item)
-    print(result, ": stock status for", item)
-    return result
-  return wrapper
+# #Bir mesaj üreten bir fonksiyonunuz olduğunu düşünün. Amacınız, bu orijinal fonksiyonu bir argüman olarak alan ve orijinal fonksiyonun kodunu değiştirmeden orijinal mesajı büyük harfe dönüştüren başka bir fonksiyon oluşturmaktır. Bu fonksiyonlar dekoratör olarak bilinir. Aşağıdaki kodda, uppercase() fonksiyonu bir dekoratör olarak hareket eder ve wrapper() fonksiyonu greet() fonksiyonunun değiştirilmiş (veya dekore edilmiş) versiyonunu temsil eder.
+# def greet():
+#     return "Welcome!"
 
-@stock_status_decorator #restock_item = stock_status_decorator(restock_item)
-def restock_item(item):
-    return "Restocked"
+# #takes a function as an argument
+# def uppercase(func):
+#   #wrapper function to keep the
+#   #original function code unchanged
+#   def wrapper():
+#     orig_message = func()
+#     modified_message = orig_message.upper()
+#     return modified_message
+#   return wrapper
 
-@stock_status_decorator #sell_item = stock_status_decorator(sell_item)
-def sell_item(item):
-    return "Sold"
+# greet_upper = uppercase(greet)
+# print(greet_upper())
 
-print(restock_item("Laptop"))
-print(sell_item("Smartphone"))
+
+# #You can apply a decorator to a function using the @ sign. It improves the code readability and provides a clean separation between the function and its decoration. When a function with a decorator is called, it automatically includes the behavior defined in the decorator.
+# def uppercase(func):
+#   def wrapper():
+#     orig_message = func()
+#     modified_message = orig_message.upper()
+#     return modified_message
+#   return wrapper
+
+# @uppercase
+# def greet():
+#     return "Welcome!"
+
+# # Using the decorated function
+# print(greet())
+
+
+# #Decorators are a powerful feature, offering a concise, readable, and efficient way to enhance the functionality of existing functions.You can apply the same decorator to several different functions:
+# def stock_status_decorator(func):
+#   def wrapper(item):
+#     result = func(item)
+#     print(result, ": stock status for", item)
+#     return result
+#   return wrapper
+
+# @stock_status_decorator #restock_item = stock_status_decorator(restock_item)
+# def restock_item(item):
+#     return "Restocked"
+
+# @stock_status_decorator #sell_item = stock_status_decorator(sell_item)
+# def sell_item(item):
+#     return "Sold"
+
+# print(restock_item("Laptop"))
+# print(sell_item("Smartphone"))

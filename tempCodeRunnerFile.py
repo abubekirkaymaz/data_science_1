@@ -1,9 +1,7 @@
-def mult(n):
-#   return lambda a : a * n
+heights_arr = np.array(heights)
+ages_arr = np.array(ages)
 
-# doubler = mult(2)
-# tripler = mult(3)
-
-# print(doubler(5)) #10
-# print(tripler(5)) #15
-
+print(heights_arr.size)
+print(heights_arr.shape)
+print(ages_arr.dtype)
+print(heights_arr.ndim)

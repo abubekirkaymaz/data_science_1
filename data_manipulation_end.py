@@ -7,8 +7,8 @@ import numpy as np
 #5-ndarray.size ise bir özelliktir, yani mevcut bir Numpy dizisi hakkinda bilgi verir (eleman sayisini döndürmek gibi).
 #6-Another characteristic about numpy array is that it is homogeneous, meaning each element must be of the same data type.
 #7-#Numpy supports several data types such as int (integer), float (numeric floating point), and bool (boolean values, True and False).
-#8-İki dizeyi yataş birleştirmek istersek, satır sayıları aynı olmalı, (axis=1)
-#9-İki dizeyi dikey birleştirmek istersek, sütun sayıları aynı olmalı, (axis=0)
+#8-iki dizeyi yataş birleştirmek istersek, satır sayıları aynı olmalı, (axis=1)
+#9-iki dizeyi dikey birleştirmek istersek, sütun sayıları aynı olmalı, (axis=0)
 
 
 heights = [189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178, 183, 193, 178, 173, 174, 183, 183, 180, 168, 180, 170, 178, 182, 180, 183, 178, 182, 188, 175, 179, 183, 193, 182, 183, 177, 185, 188, 188, 182, 185, 191]
@@ -16,23 +16,23 @@ heights = [189, 170, 189, 163, 183, 171, 185, 168, 173, 183, 173, 173, 175, 178,
 ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 62, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47, 70]
 
 #------------------------------------------------------------------#
-#Creat Array
+# 1-Creat Array
 #------------------------------------------------------------------#
 
 # heights_arr = np.array(heights)
 # ages_arr = np.array(ages)
 
-# print(heights_arr.size)
-# print(heights_arr.shape)
-# print(ages_arr.dtype)
-# print(heights_arr.ndim)
+# print(heights_arr.size) #45 >> dizideki toplam veri sayısı
+# print(heights_arr.shape) #(45,) 1d bir dizi
+# print(ages_arr.dtype) #int64 >> integer tipinde veri
+# print(heights_arr.ndim) #1 boyutlu dizi
 
 #------------------------------------------------------------------#
-#Indexing
+# 2-Indexing-Slicing
 #------------------------------------------------------------------#
 
-# #Axis 0 (↓): Yukaridan aşağiya gider, satirlar boyunca işler.
-# #Axis 1 (→): Soldan sağa gider, sütunlar boyunca işler.
+#Axis 0 (↓): Yukaridan aşağiya gider, satirlar boyunca işler.
+#Axis 1 (→): Soldan sağa gider, sütunlar boyunca işler.
 
 # heights_ages = heights + ages
 # heights_ages_arr = np.array(heights_ages)
@@ -46,10 +46,16 @@ ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 
 # print(new_arr[1,2]) #2. satir, 3. sütunda ki eleman>> tek eleman seçme>>x-y koordinati belirtme gibi
 # print(new_arr[0,20]) #1. satir, 21. sütunda ki eleman
 
+# print(new_arr[1, :]) # tümünü seçmek istiyorsak ya boş birakilacak [0:3,], ya da boş ":"" işareti koyulacak [0:3, :]
+# #print(new_arr[, 1:3]) #bu işlem hata verir, çünkü satir tarafi yani virgülün solu için bir belirtme yapilmasi gerekir.
+# print(new_arr[:, 1:3]) #doğru kullanim bu şekilde. Virgülün solu boş birakilmaz.
+# print(new_arr[1,5]) #doğru kullanim bu şekilde. Virgülün solu boş birakilmaz.
 
-#------------------------------------------------------------------#
-# Slicing
-#------------------------------------------------------------------#
+# print(type(new_arr)) #<class 'numpy.ndarray'>
+
+# print(new_arr[0:1, 0:3]) #satir dilimlemesi yapildiği için sonuç bir 2D dizi olur.
+# print(new_arr[0, 0:3])  #doğrudan satir seçildiği için, sonuç bir 1D dizi olur.
+
 
 # #We use ":" to select all the elements from the index up to but not including the ending index. This is called slicing.
 # #NumPy'de sütun indeksi belirtilmediğinde, tüm sütunlar seçilir.
@@ -98,12 +104,12 @@ ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 
 
 # print(arr[1:4])  # [20 30 40]
 # # Tek boyutlu dizilerde (1D), NumPy satir veya sütun ayrimi yapmaz, sadece indeks araliğini alir.
-# # İki boyutlu dizilerde (2D), satir-sütun seçimi yapabilirsiniz.
+# # iki boyutlu dizilerde (2D), satir-sütun seçimi yapabilirsiniz.
 # # Eğer satir-sütun ayrimi yapmak istiyorsaniz, 2D bir NumPy dizisi kullanmalisiniz.
 
 # print(arr[:4])  # [10 20 30 40]
 # #Başlangiç: Varsayilan olarak 0 (ilk elemandan başla).
-# #Bitiş: 4 (İndeks 4'e kadar).
+# #Bitiş: 4 (indeks 4'e kadar).
 # #Adim: Varsayilan olarak 1.
 
 # print(arr[::2])  # [10 30 50 70]
@@ -161,7 +167,7 @@ ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 
 # heights_and_ages_arr = heights_and_ages_arr.reshape((2,45))
 
 # print(heights_and_ages_arr)
-# heights_and_ages_arr[0, 3] = 165 #İlk satirin 3. indexinde ki 163 >>> 165 olarak değişti
+# heights_and_ages_arr[0, 3] = 165 #ilk satirin 3. indexinde ki 163 >>> 165 olarak değişti
 # print(heights_and_ages_arr)
 
 # heights_and_ages_arr[0,:] = 180 # ilk satirin tüm verileri (:) 180 olarak değişti
@@ -198,7 +204,7 @@ ages = [57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 
 # arr = np.zeros((4, 3))  # 4 satir, 3 sütunluk bir matris (sifirlarla dolu)
 # print("Başlangiç dizisi:\n", arr)
 
-# arr[:, 0] = [10, 20, 30, 40]  # İlk sütuna 1D bir liste atiyoruz
+# arr[:, 0] = [10, 20, 30, 40]  # ilk sütuna 1D bir liste atiyoruz
 
 # print("Güncellenmiş dizi:\n", arr)
 # #NumPy, (4,) şeklindeki 1D listeyi (4,1) olarak yorumladi ve otomatik olarak genişletti.
@@ -290,18 +296,290 @@ arr[0, :] = (m,) olan bir vektör satir olarak yayilir.
 # print(height_age_arr[:3,:])
 
 # # Dikey birleştirme: birleştirilen dizilerin sütun sayıları eşit olmalı
-arr_1 = np.array([[1,2,3],
-         [22,22,33]])
-arr_2 = np.array([[10,20,30],
-         [5,15,25],
-         [44,55,66]])
+# arr_1 = np.array([[1,2,3],
+#          [22,22,33]])
+# arr_2 = np.array([[10,20,30],
+#          [5,15,25],
+#          [44,55,66]])
 
 
-# arr = np.vstack((arr_1, arr_2))
-arr = np.concatenate((arr_1,arr_2), axis=0)
+# # arr = np.vstack((arr_1, arr_2))
+# arr = np.concatenate((arr_1,arr_2), axis=0)
+# print(arr)
+
+
+#------------------------------------------------------------------#
+#Mathematical Operations on Arrays
+#------------------------------------------------------------------#
+
+# heights_arr = np.array(heights)
+# ages_arr = np.array(ages)
+
+# heights_arr = heights_arr.reshape((45,1))
+# ages_arr = ages_arr.reshape((45,1))
+# height_age_arr = np.hstack((heights_arr, ages_arr))
+
+# print(height_age_arr[:,0]*0.0328084)
+
+# #Now we have all heights in feet. Note that this operation won’t change the original array, it returns a new 1darray where 0.0328084 has been multiplied to each element in the first column of 'heights_age_arr'.
+
+# #Numpy Array Mathematical Methods
+# print(height_age_arr.sum()) 
+# print(height_age_arr.sum(axis=0))  #[8100 2475] >> sütunlar toplamlari
+# print(height_age_arr.sum(axis=1)) #satirlar toplamlari
+
+# #Other operations, such as .min(), .max(), .mean(), work in a similar way to .sum().
+
+#------------------------------------------------------------------#
+#Comparisons
+#------------------------------------------------------------------#
+
+# heights_arr = np.array(heights)
+# ages_arr = np.array(ages)
+
+# heights_arr = heights_arr.reshape((45,1))
+# ages_arr = ages_arr.reshape((45,1))
+# height_age_arr = np.hstack((heights_arr, ages_arr))
+
+# print(height_age_arr[:, 1] < 55)
+# print(height_age_arr[:, 1] == 51)
+# print((height_age_arr[:, 1] == 51).sum()) #True is treated as 1 and False as 0 in the sum.
+
+#------------------------------------------------------------------#
+#Mask & Subsetting
+#------------------------------------------------------------------#
+heights_arr = np.array(heights)
+ages_arr = np.array(ages)
+
+heights_arr = heights_arr.reshape((45,1))
+ages_arr = ages_arr.reshape((45,1))
+height_age_arr = np.hstack((heights_arr, ages_arr))
+
+# mask = height_age_arr[:, 0] >= 182
+
+# print(mask)
+# print(mask.sum())
+
+# tall_presidents = height_age_arr[mask, ]
+
+# print(tall_presidents.shape)
+
+#Extra:new_arr = heights_ages_arr.reshape(2, -1).T
+
+mask = height_age_arr[:, 0] >= 180 # ilk sütunda 180 den büyük ve eşit olan değerler için bir mask değişkeni tanimladik
+
+print(mask.shape)
+
+print(height_age_arr[mask,]) #esas dizimizde bu mask değişkeninin tuttuğu değerleri tüm satirlara uyguladiğimizda koşulu sağlayan değerler listelenir.
+
+arr = np.array([
+    [10,  20,  30,  40,  50],   # 0. satir
+    [60,  70,  80,  90, 100]    # 1. satir
+])
+
+mask = arr[1, :] > 80
+# print(mask) #[False False False  True  True]
+
+filtered_arr = arr[:, mask]
+# print(filtered_arr)
+
+mask = (height_age_arr[:, 0]>=182) & (height_age_arr[:,1]<=50)
+print(height_age_arr[mask,])
+
+#MASK EXERCiSES
+"""
+#1-Bir NumPy array’i oluştur ve sadece pozitif olan elemanlari seçerek yeni bir array oluştur.
+arr = np.array([-3, 7, -1, 4, -9, 10, 0, -2])  
+print(arr)
+print("---------------------------------------------------")
+mask = arr > 0
+print(arr[mask])
+
+#2-Aşağidaki array’den 10 ile 30 arasindaki (10 ve 30 dahil) sayilari seç ve yeni bir array oluştur.
+arr = np.array([5, 12, 25, 30, 7, 40, 15, 28, 35])  
+
+mask = (arr >= 10) & (arr <= 30)
+print(arr[mask])
+
+#3-Aşağidaki array’de tek sayilari -1 ile değiştir.
+arr = np.array([4, 9, 12, 15, 22, 33, 42])
+
+mask = arr % 2 != 0  
+arr[mask] = -1  
+print(arr)
+
+#4-Aşağidaki array içinden sadece 2 veya 5 ile tam bölünebilen sayilari içeren yeni bir array oluştur.
+arr = np.array([10, 17, 22, 25, 30, 37, 40, 45])  
+
+mask = (arr % 2 == 0) & (arr % 5 == 0)
+print(arr[mask])
+
+#5-Aşağidaki NumPy array'inde NaN (Not a Number) değerlerini maskele ve sadece geçerli sayilari içeren bir array oluştur.
+arr = np.array([3.4, np.nan, 5.6, np.nan, 7.8, 10.2])
+mask = ~np.isnan(arr)  # NaN olmayanlari seçmek için tersleme (~) kullanilir
+new_arr = arr[mask]
+print(new_arr)
+
+#6-Aşağidaki dizide, 10'dan küçük olan elemanlari seçin:
+arr = np.array([2, 8, 12, 5, 20, 7, 15])
+mask = arr < 10
+print(arr[mask])
+
+#7-Aşağidaki dizideki negatif sayilari sifirla değiştirin:
+arr = np.array([1, -5, 3, -2, 7, -1, 4])
+mask = arr < 0
+arr[mask] = 0
+print(arr)
+
+#8-Aşağidaki dizideki sadece çift sayilari seçin:
+arr = np.array([11, 24, 9, 16, 31, 8, 17])
+mask = arr % 2 == 0
+
+print(arr[mask])
+
+#9-Aşağidaki dizideki 5'e bölünebilen sayilari seçin:
+arr = np.array([13, 25, 30, 7, 45, 12, 20])
+mask = arr % 5 == 0
+print(arr[mask])
+
+#10-Aşağidaki dizide, NaN olmayan elemanlari sirasiyla 3'e bölün:
+arr = np.array([12, np.nan, 15, np.nan, 24, 18])
+mask = ~np.isnan(arr)
+
+new_arr_1 = arr[mask] / 3
+print(new_arr_1)
+
+#11-NaN değerler ayni indekslerinde kalacak ve diğerleri ise 3 bölümleri olacak  
+arr = np.array([12, np.nan, 15, np.nan, 24, 18])
+mask = ~np.isnan(arr)  # NaN olmayan elemanlari seçer
+
+#12-NaN olmayan elemanlari 3'e böler, NaN'ler olduğu gibi kalir
+arr_result = arr.copy()  # Orijinal diziyi bozmamak için bir kopya oluşturuyoruz
+arr_result[mask] = arr_result[mask] / 3
+print(arr_result)  # Yeni diziyi yazdirir
+
+#13-Soru: Bir NumPy dizisi oluşturun ve bu dizideki tek sayilari sifirla değiştirin.
+arr = np.array([12, 7, 14, 19, 20, 25, 30])
+mask = arr % 2 != 0
+arr[mask] = 0
+print(arr)
+
+#14-Soru:Bir NumPy dizisinde, 5'e bölünebilen sayilari 2 ile çarpin ve sonucu yazdirin.
+arr = np.array([3, 10, 15, 18, 25, 30, 35])
+mask = arr % 5 == 0
+arr[mask] = arr[mask] * 2
+print(arr)
+
+#15-Soru: Bir NumPy dizisinde, tüm pozitif sayilari 3 ile bölecek şekilde yeni bir diziyi oluşturun. NaN değerlerini olduğu gibi birakin.
+arr = np.array([10, -3, 15, np.nan, 25, -2])
+
+mask = ~np.isnan(arr)   #~ (tilde)
+arr[mask] = arr[mask] / 3
+print(arr)
+
+#16-sadece pozitif sayilari 3 ile bölmek
+arr = np.array([10, -3, 15, np.nan, 25, -2])
+mask = (~np.isnan(arr))  & (arr > 0)
+arr[mask] = arr[mask] / 3
 print(arr)
 
 
+#17-Soru: Bir NumPy dizisinde, 10'dan küçük olan sayilari 10 ile toplayin ve sonucu yazdirin.
+arr = np.array([5, 15, 3, 22, 8, 1])
+
+mask = arr < 10
+arr[mask] = arr[mask] + 10
+
+print(arr)
+
+#18-Soru: Bir NumPy dizisinde, 3'e bölünebilen sayilari 10 ile değiştirin ve sonucu yazdirin.
+arr = np.array([9, 14, 30, 7, 18, 21, 5])
+
+mask = arr % 3 == 0
+arr[mask] = 10
+print(arr)
+
+#19-Aşağidaki NumPy dizisini kullanarak, hem 3'e hem de 5'e bölünebilen elemanlari 3 ile çarpin ve dizinin tamamini yazdirin.
+arr = np.array([15, 30, 12, 45, 18, 25, 50, 7, 10, 35])
+mask = (arr % 3 == 0) & (arr % 5 == 0)
+arr[mask] = arr[mask] * 3
+print(arr) 
 
 
+#20-Bir NumPy dizisini ele alalim. Bu dizide 3'e bölünebilen ve 7'ye bölünebilen sayilara 5 ekleyin. Dizinin geri kalanini olduğu gibi birakin. Sonucu yazdirin.
+arr = np.array([14, 21, 28, 9, 5, 33, 49, 63, 8, 12])
+mask = (arr % 3 == 0) & (arr % 7 == 0)
+arr[mask] = arr[mask] + 5
+print(arr)
+ 
+#21-Aşağidaki NumPy dizisini kullanarak, dizinin en küçük ve en büyük değerleri dişindaki tüm değerleri 0 ile değiştirin. Sonucu yazdirin 
+arr = np.array([5, 12, 19, 2, 31, 8, 22, 4, 17])
+# En küçük ve en büyük değerleri buluyoruz
+min_val = np.min(arr)
+max_val = np.max(arr)
+# Maske oluşturuyoruz: En küçük ve en büyük değerler dişindaki tüm değerler seçilecek
+mask = (arr != min_val) & (arr != max_val)
+# En küçük ve en büyük dişindaki değerleri 0 yapiyoruz
+arr[mask] = 0
+print(arr)
 
+
+#22-Aşağidaki NumPy dizisinde negatif sayilari pozitif yapin ve 0 olan elemanlari olduğu gibi birakin. Sonucu yazdirin. 
+arr = np.array([4, -5, 10, 0, -12, 15, -3, 0, -9])
+mask = arr < 0 
+arr[mask] = -arr[mask]
+print(arr)
+
+
+#23-Aşağidaki 2 boyutlu dizide, yalnizca çift sayilari seçip yazdiran bir maske uygulayin.
+arr = np.array([[4, 7, 12], [3, 8, 6], [9, 10, 2]])
+
+mask = arr % 2 == 0
+
+print("--------------------")
+print(arr[mask])
+
+#23-Aşağidaki 2 boyutlu dizide, ilk iki sütunda ki değerlerden negatif olanlari 333 değeri ile değiştir.
+arr = np.array([[2, -3, 5], [-8, 12, 7], [0, -1, 4]])
+mask = arr[:, 0:2] < 0
+arr[:, 0:2][mask] = 333
+print(arr)
+
+#Aşağidaki 2 boyutlu dizide, yalnizca pozitif sayilari seçip yazdiran bir maske uygulayin.
+arr = np.array([[2, -3, 5], [-8, 12, 7], [0, -1, 4]])
+# Maskeyi pozitif sayilari seçecek şekilde tanimliyoruz
+mask = arr >= 0
+# Maskeyi kullanarak sadece pozitif sayilari içeren yeni bir dizi oluşturuyoruz
+positive_arr = np.where(mask, arr, np.nan)
+print(positive_arr)
+
+#Aşağidaki 2 boyutlu dizide, negatif olmayan sayilari (sifir dahil) seçip yazdiran bir maske oluşturun.
+arr = np.array([[-5, 2, 10], [-3, 0, -1], [4, 7, -8]])
+mask = arr >= 0
+new_arr = np.where(mask, arr, -111)
+print(new_arr)
+"""
+
+#----------------------------------------------------------------------------------------------------------------------------
+# #PRACTICE EXERCISE-Data Science - Average of Rows
+# import numpy as np
+
+# # Kullanicidan giriş almak
+# n, p = map(int, input().split())  # ilk satir: satir ve sütun sayisi
+# matrix = []  # Boş liste
+
+# for _ in range(n):
+#     row = list(map(float, input().split()))  # Satir verilerini al
+#     matrix.append(row)
+
+# # NumPy array'e dönüştür
+# matrix_np = np.array(matrix)
+
+# # Satir ortalamalarini hesapla
+# row_means = np.mean(matrix_np, axis=1)
+
+# # Sonuçlari yuvarla
+# row_means_rounded = np.round(row_means, 2)
+
+# # Çiktiyi yazdir
+# print(row_means_rounded)
