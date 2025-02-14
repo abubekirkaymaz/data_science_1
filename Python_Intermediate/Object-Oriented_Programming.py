@@ -330,24 +330,82 @@ for animal in animals:
 # print(my_car._Car__odometer)
 
 # You can also designate methods as protected or private, following the same convention as with attributes. Protected methods are prefixed with a single underscore and can be accessed within the class and its subclasses. However, private methods, marked by a double underscore, cannot be directly accessed from outside the class.
-class Car:
-  def __init__(self, model, year, odometer):
-    self.model = model
-    self.year = year
-    # Making the odometer attribute 'private'
-    self.__odometer = odometer  
+# class Car:
+#   def __init__(self, model, year, odometer):
+#     self.model = model
+#     self.year = year
+#     # Making the odometer attribute 'private'
+#     self.__odometer = odometer  
 
-  def _describe_car(self):  # Making the describe_car method 'protected'
-    print(self.year, self.model)
+#   def _describe_car(self):  # Making the describe_car method 'protected'
+#     print(self.year, self.model)
 
-  def __read_odometer(self):  # Making the read_odometer method 'private'
-    print("Odometer:", self.__odometer, "miles")
+#   def __read_odometer(self):  # Making the read_odometer method 'private'
+#     print("Odometer:", self.__odometer, "miles")
 
 
-my_car = Car('Audi', 2020, 15000)
+# my_car = Car('Audi', 2020, 15000)
 
-#accessing protected method
-my_car._describe_car()
+# #accessing protected method
+# my_car._describe_car()
 
-#error when accessing a privet method
-# my_car.__read_odometer()
+# #error when accessing a privet method
+# # my_car.__read_odometer()
+
+
+#Class and Static Methods:Class methods are called on the class itself, not on individual instances. This allows their use without needing to create a class instance. They are especially useful for actions relevant to the class as a whole, rather than actions limited to a single object.Class methods are created using the @classmethod decorator and take the cls argument, which refers to the class itself.
+#To call a class method you don't need to create an instance of the class. Instead, just use the class name, followed by a dot and the class method name.
+#Instances share everything that a class has, including the class methods. This means that you call a class method on instances as well.
+
+# class Book:
+#   def __init__(self, title, author):
+#     self.title = title
+#     self.author = author
+
+#   #regular method
+#   def describe_book(self):
+#     print(self.title, 'by', self.author)
+
+#   #class method
+#   @classmethod
+#   def books_in_series(cls, series_name, number_of_books):
+#     print('There are', number_of_books, 'books in the', series_name, 'series')
+
+# # Creating an instance of Book
+# my_book = Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling")
+
+# # Using the instance method to describe the book
+# my_book.describe_book()
+
+# # Using the class method to display information about the series
+# Book.books_in_series("Harry Potter", 7)
+
+# # calling the class method on the instance
+# my_book.books_in_series("Harry Potter", 7)
+
+
+#Static methods are similar to class methods, except they don't receive any additional arguments; they are identical to normal functions that belong to a class. They are marked with the @staticmethod decorator.
+#When should you use static methods instead of class methods? Static methods don't accept the cls parameter, meaning they can't access or modify the class's state. They are useful when you require functionality that doesn't depend on the class's behavior or instance state and doesn't affect it. Essentially, static methods are suited for tasks that are self-contained and do not require knowledge of the class or instance.
+
+class Book:
+  def __init__(self, title, author):
+    self.title = title
+    self.author = author
+
+  #regular method
+  def describe_book(self):
+    print(self.title, 'by', self.author)
+
+  #staticmethod
+  @staticmethod
+  def books_in_series(series_name, number_of_books):
+    print('There are', number_of_books, 'books in the', series_name, 'series')
+
+# Creating an instance of Book
+my_book = Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling")
+
+# Using the instance method to describe the book
+my_book.describe_book()
+
+# calling the static method
+Book.books_in_series("Harry Potter", 7)
