@@ -1,23 +1,49 @@
 import random
+import os
 import numpy  as np
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
+from openpyxl.styles import numbers
+from data import random_numbers, rounded_floats
 
+def file_open_creat(dosya_adi):
+  if os.path.exists("work_datas"):
+    #Mevcut dosyayı aç
+    trash_data = load_workbook("work_datas")
+  else:
+    # Workbook ve worksheet oluştur
+    trash_data = Workbook()
+    #worksheet = trash_data.active # worksheet değişkenine excel çalışma kitabında ki aktif sayfayı atar
+    sayfa_1 = trash_data.create_sheet("Sayfa 1")
+    trash_data.active = sayfa_1
 
-random_numbers = np.random.randint(500, 5001, size=20)
-print(random_numbers)
+    default_sheet = trash_data["Sheet"]
+    trash_data.remove(default_sheet)
 
-random_floats = np.random.uniform(1.0, 10.0, size=20)
-print(random_floats)
+    sayfa_1.cell(row=1, column=1, value="Miktar")
+    sayfa_1.cell(row=1, column=2, value="Oran")
 
-rounded_floats = np.around(random_floats, decimals=2)
-print(rounded_floats)
+    # Verileri satır satır yaz
+    for i, (deger1, deger2) in enumerate(zip(random_numbers, rounded_floats), start=2):  # start=2 çünkü başlık 1. satırda
 
-print(type(random_numbers))
+      # Integer değerler için binlik ayraçlı format
+      cell1 = sayfa_1.cell(row=i, column=1, value=deger1)
+      cell1.number_format = numbers.FORMAT_NUMBER_COMMA_SEPARATED1  # Binlik ayraçlı format
 
-trash_data = Workbook()
-worksheet = trash_data.active
+      # Float değerler için binlik ayraçlı ve virgülden sonra 2 basamaklı format
+      cell2 = sayfa_1.cell(row=i, column=2, value=deger2)
+      cell2.number_format = numbers.FORMAT_NUMBER_COMMA_SEPARATED2  # Binlik ayraçlı ve 2 ondalık basamak
 
+  return trash_data
 
+dosya_adi = "work_datas.xlsx"
+
+trash_data = file_open_creat(dosya_adi)
+
+sayfa_1 = trash_data["Sayfa 1"]
+
+sayfa_1.cell(row=1, column=3, value="deneme başlık")
+
+trash_data.save(dosya_adi)
 
 
 """
