@@ -8,6 +8,6 @@ random_floats = np.random.uniform(1.0, 10.0, size=20)
 print(random_floats)
 
 rounded_floats = np.around(random_floats, decimals=2)
-print(rounded_floats)
+print(random_floats)
 
 #print(type(random_numbers))
